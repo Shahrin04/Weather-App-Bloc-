@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/data/repositories/weather_repo.dart';
+import 'package:weather_app/logic/bloc/weather_bloc.dart';
 import 'package:weather_app/presentation/screens/search_page.dart';
 
 void main() {
@@ -14,8 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SearchPage(),
+      home: BlocProvider(
+        create: (context) => WeatherBloc(weatherRepo: WeatherRepo()),
+        child: SearchPage(),
+      ),
     );
   }
 }
-
